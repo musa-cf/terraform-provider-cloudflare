@@ -315,16 +315,16 @@ func TestAccCloudflareLoadBalancerMonitor_ChangingHeadersCauseReplacement(t *tes
 				Config: testAccCheckCloudflareLoadBalancerMonitorConfigWithHeaders(rnd, domain, accountID),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(name, consts.AccountIDSchemaKey, accountID),
-					resource.TestCheckResourceAttr(name, "header.Header.0", "Host"),
-					resource.TestCheckResourceAttr(name, "header.Values.0", domain),
+					resource.TestCheckResourceAttr(name, "header.header.0", "Host"),
+					resource.TestCheckResourceAttr(name, "header.values.0", domain),
 				),
 			},
 			{
 				Config: testAccCheckCloudflareLoadBalancerMonitorConfigWithHeaders(rnd, fmt.Sprintf("%s.%s", rnd, domain), accountID),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(name, consts.AccountIDSchemaKey, accountID),
-					resource.TestCheckResourceAttr(name, "header.Header.0", "Host"),
-					resource.TestCheckResourceAttr(name, "header.Values.0", fmt.Sprintf("%s.%s", rnd, domain)),
+					resource.TestCheckResourceAttr(name, "header.header.0", "Host"),
+					resource.TestCheckResourceAttr(name, "header.values.0", fmt.Sprintf("%s.%s", rnd, domain)),
 				),
 			},
 		},
